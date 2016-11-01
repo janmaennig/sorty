@@ -1,0 +1,27 @@
+{
+  "name": "jan-maennig/sorty",
+  "description": "Library to sort arrays and array objects.",
+  "type": "library",
+  "autoload": {
+    "psr-4": {
+      "JanMaennig\\Sorty\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "JanMaennig\\Sorty\\Tests\\": "tests/"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.3.0",
+    "squizlabs/php_codesniffer": "2.5.1",
+    "phploc/phploc": "3.0.0",
+    "phpmd/phpmd": "2.3.2",
+    "sebastian/phpcpd": "2.0.2",
+    "theseer/phpdox": "0.8.1.1",
+    "phpmetrics/phpmetrics": "1.8.3"
+  },
+  "require": {
+    "php": ">=5.6"
+  }
+}
