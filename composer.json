@@ -2,6 +2,25 @@
   "name": "jan-maennig/sorty",
   "description": "Library to sort arrays and array objects.",
   "type": "library",
+  "keywords": [
+    "array",
+    "order",
+    "sorting"
+  ],
+  "homepage": "https://github.com/janmaennig/sorty",
+  "authors": [
+    {
+      "name": "Jan Maennig",
+      "email": "janmaennig@gmail.com"
+    }
+  ],
+  "support": {
+    "email": "janmaennig@gmail.com",
+    "issues": "https://github.com/janmaennig/sorty/issues",
+    "docs": "https://github.com/janmaennig/sorty/blob/master/README.md",
+    "source": "https://github.com/janmaennig/sorty/tree/master"
+  },
+  "license": "MIT",
   "autoload": {
     "psr-4": {
       "JanMaennig\\Sorty\\": "src/"
