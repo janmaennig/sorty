@@ -5,7 +5,7 @@ namespace JanMaennig\Sorty;
 /**
  * @package JanMaennig\Sorty
  */
-class ArraySorter
+class ArrayValueSorter
 {
     /**
      * @param array $recordCollection

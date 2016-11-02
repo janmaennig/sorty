@@ -5,7 +5,7 @@ namespace JanMaennig\Sorty\Tests;
 /**
  * @package JanMaennig\Sorty\Tests
  */
-class ArraySorterFixture
+class ArrayValueSorterFixture
 {
     public static $expectedCollection = [
         [

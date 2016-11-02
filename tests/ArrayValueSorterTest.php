@@ -2,16 +2,16 @@
 
 namespace JanMaennig\Sorty\Tests;
 
-use JanMaennig\Sorty\ArraySorter;
+use JanMaennig\Sorty\ArrayValueSorter;
 
-class ArraySorterTest extends \PHPUnit_Framework_TestCase
+class ArrayValueSorterTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var  ArraySorter */
+    /** @var  ArrayValueSorter */
     private $arraySorter;
 
     public function setUp()
     {
-        $this->arraySorter = new ArraySorter();
+        $this->arraySorter = new ArrayValueSorter();
     }
 
     public function testArraySorting()
@@ -57,6 +57,6 @@ class ArraySorterTest extends \PHPUnit_Framework_TestCase
 
         $result = $this->arraySorter->sorting($collection, $sortedPropertiesDirections);
 
-        $this->assertEquals(ArraySorterFixture::$expectedCollection, $result);
+        $this->assertEquals(ArrayValueSorterFixture::$expectedCollection, $result);
     }
 }

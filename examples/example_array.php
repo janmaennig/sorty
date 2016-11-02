@@ -41,6 +41,6 @@ $sortedPropertiesDirections = [
     'objectName' => SORT_ASC
 ];
 
-$arraySorter = new \JanMaennig\Sorty\ArraySorter();
+$arraySorter = new \JanMaennig\Sorty\ArrayValueSorter();
 
 $result = $arraySorter->sorting($collection, $sortedPropertiesDirections);
