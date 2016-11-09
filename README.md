@@ -12,5 +12,9 @@ composer require jan-maennig/sorty
 ## Checks
 
 ```
-vendor/bin/phpunit --bootstrap 'vendor/autoload.php' tests/ 
+./vendor/bin/phpcs --standard=PSR2 ./src -v
+./vendor/bin/phpcpd ./src
+./vendor/bin/phpunit ./tests/ --coverage-clover build/logs/clover.xml
+./vendor/bin/phpmd ./src text ./phpmd.xml
+./vendor/bin/security-checker security:check ./composer.lock
 ```
