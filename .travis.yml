@@ -17,3 +17,9 @@ script:
 - ./vendor/bin/phpunit ./tests/ --coverage-clover build/logs/clover.xml
 - ./vendor/bin/phpmd ./src text ./phpmd.xml
 - ./vendor/bin/security-checker security:check ./composer.lock
+
+after_success:
+- ./vendor/bin/test-reporter
+addons:
+  code_climate:
+    repo_token: 31e280fb08cf7784a85a05e78784afe6057c8a0ce5a644e6861ae3976f92ef58
