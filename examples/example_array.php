@@ -36,7 +36,7 @@ $collection = [
 ];
 
 $sortedPropertiesDirections = [
-    'anyTypeSort' => SORT_ASC,
+    'anyTypeSort' => SORT_NUMERIC,
     'matchQuality' => SORT_DESC,
     'objectName' => SORT_ASC
 ];
@@ -44,3 +44,5 @@ $sortedPropertiesDirections = [
 $arraySorter = new \JanMaennig\Sorty\ArrayValueSorter();
 
 $result = $arraySorter->sorting($collection, $sortedPropertiesDirections);
+
+print_r($result);
