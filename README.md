@@ -1,6 +1,7 @@
 # Sorty
 
 [![Latest Stable Version](https://poser.pugx.org/jan-maennig/sorty/v/stable)](https://packagist.org/packages/jan-maennig/sorty)
+[![Build Status](https://travis-ci.org/janmaennig/sorty.svg?branch=master)](https://travis-ci.org/janmaennig/sorty)
 [![Total Downloads](https://poser.pugx.org/jan-maennig/sorty/downloads)](https://packagist.org/packages/jan-maennig/sorty)
 [![License](https://poser.pugx.org/jan-maennig/sorty/license)](https://packagist.org/packages/jan-maennig/sorty)
 [![Test Coverage](https://codeclimate.com/github/janmaennig/sorty/badges/coverage.svg)](https://codeclimate.com/github/janmaennig/sorty/coverage)
