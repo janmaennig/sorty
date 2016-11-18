@@ -39,17 +39,13 @@ class ArrayValueSorter
             }
         }
 
+        $sortingParameters = $this->generateFunctionCallParameters($sortingPropertiesDirection, $sortList);
+
+        $sortingParameters[] = &$recordCollection;
+
         call_user_func_array(
             'array_multisort',
-            [
-                $sortList['anyTypeSort'],
-                SORT_ASC,
-                $sortList['matchQuality'],
-                SORT_DESC,
-                $sortList['objectName'],
-                SORT_ASC,
-                &$recordCollection
-            ]
+            $sortingParameters
         );
 
         return $recordCollection;
@@ -95,5 +91,22 @@ class ArrayValueSorter
                 sprintf('Sorting direction "%s" is an invalid sorting flag!', $sortingDirection)
             );
         }
+    }
+
+    /**
+     * @param array $sortingPropertiesDirection
+     * @param array $sortList
+     *
+     * @return array
+     */
+    protected function generateFunctionCallParameters(array $sortingPropertiesDirection, array $sortList)
+    {
+        $sortingParameters = [];
+        foreach ($sortingPropertiesDirection as $property => $direction) {
+            $sortingParameters[] = $sortList[$property];
+            $sortingParameters[] = $direction;
+        }
+
+        return $sortingParameters;
     }
 }
