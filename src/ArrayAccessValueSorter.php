@@ -45,3 +45,5 @@ class ArrayAccessValueSorter
         return $this->resultObject;
     }
 }
+    }
+}
