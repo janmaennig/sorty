@@ -35,7 +35,7 @@ class ArrayAccessValueSorter
     public function sorting(\ArrayAccess $recordCollection, array $sortingPropertiesDirection)
     {
         if (!$recordCollection instanceof \ArrayAccess || !$recordCollection instanceof \Iterator) {
-            throw new \RuntimeException ('Record collection must be implement \ArrayAccess and \Iterator interface!');
+            throw new \RuntimeException('Record collection must be implement \ArrayAccess and \Iterator interface!');
         }
 
         $className = get_class($recordCollection);
@@ -43,7 +43,5 @@ class ArrayAccessValueSorter
         $this->resultObject = new $className();
 
         return $this->resultObject;
-    }
-}
     }
 }
