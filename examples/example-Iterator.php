@@ -2,7 +2,7 @@
 
 require_once(__DIR__ . '/../vendor/autoload.php');
 
-class ExampleCollection implements \ArrayAccess
+class ExampleCollection implements \ArrayAccess, \Iterator
 {
     /**
      * @var array
@@ -67,9 +67,64 @@ class ExampleCollection implements \ArrayAccess
     {
         unset($this->collection[$offset]);
     }
+
+    public function current()
+    {
+        return current($this->collection);
+    }
+
+    /**
+     * Move forward to next element
+     *
+     * @link  http://php.net/manual/en/iterator.next.php
+     * @return void Any returned value is ignored.
+     * @since 5.0.0
+     */
+    public function next()
+    {
+        next($this->collection);
+    }
+
+    /**
+     * Return the key of the current element
+     *
+     * @link  http://php.net/manual/en/iterator.key.php
+     * @return mixed scalar on success, or null on failure.
+     * @since 5.0.0
+     */
+    public function key()
+    {
+        return key($this->collection);
+    }
+
+    /**
+     * Checks if current position is valid
+     *
+     * @link  http://php.net/manual/en/iterator.valid.php
+     * @return boolean The return value will be casted to boolean and then evaluated.
+     * Returns true on success or false on failure.
+     * @since 5.0.0
+     */
+    public function valid()
+    {
+        return current($this->collection) !== false;
+    }
+
+    /**
+     * Rewind the Iterator to the first element
+     *
+     * @link  http://php.net/manual/en/iterator.rewind.php
+     * @return void Any returned value is ignored.
+     * @since 5.0.0
+     */
+    public function rewind()
+    {
+        reset($this->collection);
+    }
 }
 
-class ExampleCollectionRecord {
+class ExampleCollectionRecord
+{
     /**
      * @var string
      */
@@ -119,10 +174,10 @@ class ExampleCollectionRecord {
 
 $exampleCollection = new ExampleCollection();
 
-$exampleCollection->offsetSet(time(), new ExampleCollectionRecord('Müller', 'Dresden', '04059 09409508'))
-$exampleCollection->offsetSet(time(), new ExampleCollectionRecord('Müller', 'Leipzig', '04059 09409508'));
-$exampleCollection->offsetSet(time(), new ExampleCollectionRecord('Maier', 'Stuttgart', '04059 09409508'));
-$exampleCollection->offsetSet(time(), new ExampleCollectionRecord('Schmidt', 'Hamburg', '04059 09409508'));
+$exampleCollection->offsetSet(0, new ExampleCollectionRecord('Müller', 'Dresden', '04059 09409508'));
+$exampleCollection->offsetSet(1, new ExampleCollectionRecord('Müller', 'Leipzig', '04059 09409508'));
+$exampleCollection->offsetSet(2, new ExampleCollectionRecord('Maier', 'Stuttgart', '04059 09409508'));
+$exampleCollection->offsetSet(3, new ExampleCollectionRecord('Schmidt', 'Hamburg', '04059 09409508'));
 
 $sortedPropertiesDirections = [
     'name' => SORT_ASC,
@@ -131,6 +186,10 @@ $sortedPropertiesDirections = [
 
 $arraySorter = new \JanMaennig\Sorty\ArrayAccessValueSorter();
 
-$result = $arraySorter->sorting($exampleCollection, $sortedPropertiesDirections);
+$result = $arraySorter->sorting($exampleCollection, 'name', 'ASC');
+
+print_r($result);
+
+$result = $arraySorter->sorting($exampleCollection, 'city', 'DESC');
 
 print_r($result);
