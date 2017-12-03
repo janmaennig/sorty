@@ -5,82 +5,64 @@ namespace JanMaennig\Sorty;
 /**
  * @package JanMaennig\Sorty
  */
-class ArrayAccessValueSorter
+class ArrayAccessValueSorter extends AbstractSorter
 {
     /**
-     * @var string
-     */
-    private $getSortingPropertyMethod = '';
-
-    /**
-     * @var \ArrayAccess
-     */
-    private $resultObject;
-
-    /**
      * @param \ArrayAccess|\Iterator $recordCollection must be implement \ArrayAccess and \Iterator interface
-     * @param string                 $sortingProperty
-     * @param string                 $sortingDirection
+     * @param array                  $sortingPropertiesDirection
      *
-     * @return \Iterator
+     * @return \ArrayAccess
      */
-    public function sorting($recordCollection, $sortingProperty, $sortingDirection)
+    public function sorting($recordCollection, $sortingPropertiesDirection)
     {
         if (!$recordCollection instanceof \ArrayAccess || !$recordCollection instanceof \Iterator) {
             throw new \RuntimeException('Record collection must be implement \ArrayAccess and \Iterator interface!');
         }
 
-        $unsortedCollection = iterator_to_array($recordCollection);
+        $unsortedList = iterator_to_array($recordCollection);
 
-        $sortingCallBack = 'sortAsc';
-        if ($sortingDirection === 'DESC') {
-            $sortingCallBack = 'sortDesc';
-        }
-
-        $this->getSortingPropertyMethod = 'get' . ucfirst($sortingProperty);
-
-        uasort($unsortedCollection, [$this, $sortingCallBack]);
+        $sortedList = parent::sortingArrayList($unsortedList, $sortingPropertiesDirection);
 
         $className = get_class($recordCollection);
 
-        $this->resultObject = new $className();
+        /** @var \ArrayAccess $resultObject */
+        $resultObject = new $className();
 
-        foreach ($unsortedCollection as $offset => $record) {
-            $this->resultObject->offsetSet($offset, $record);
+        foreach ($sortedList as $offset => $value) {
+            $resultObject->offsetSet($offset, $value);
         }
 
-        return $this->resultObject;
+        return $resultObject;
     }
 
     /**
-     * @param $first
-     * @param $second
+     * @param mixed  $record
+     * @param string $propertyName
      *
-     * @return int
+     * @return mixed
      */
-    private function sortAsc($first, $second)
+    protected function getSinglePropertyValueFromRecord($record, $propertyName)
     {
-        $getSortingPropertyMethod = $this->getSortingPropertyMethod;
-        if ($first->$getSortingPropertyMethod() == $second->$getSortingPropertyMethod()) {
-            return 0;
-        }
+        $getMethodName = 'get' . ucfirst($propertyName);
 
-        return ($first->$getSortingPropertyMethod() < $second->$getSortingPropertyMethod()) ? -1 : 1;
+        return $record->$getMethodName();
     }
 
     /**
-     * @param $first
-     * @param $second
+     * @param string $property
+     * @param array  $collection
      *
-     * @return int
+     * @throws \InvalidArgumentException if property in collection record not exists
      */
-    private function sortDesc($first, $second)
+    protected function validatePropertyInCollectionExists($property, array $collection)
     {
-        $getSortingPropertyMethod = $this->getSortingPropertyMethod;
-        if ($first->$getSortingPropertyMethod() == $second->$getSortingPropertyMethod()) {
-            return 0;
+        foreach ($collection as $record) {
+            $getMethodName = 'get' . ucfirst($property);
+            if (property_exists($record, $property) === false || method_exists($record, $getMethodName) === false) {
+                throw new \InvalidArgumentException(
+                    sprintf('Property "%s" in collection record not exists!', $property)
+                );
+            }
         }
-
-        return ($first->$getSortingPropertyMethod() > $second->$getSortingPropertyMethod()) ? -1 : 1;
     }
 }

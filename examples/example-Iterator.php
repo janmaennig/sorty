@@ -186,10 +186,6 @@ $sortedPropertiesDirections = [
 
 $arraySorter = new \JanMaennig\Sorty\ArrayAccessValueSorter();
 
-$result = $arraySorter->sorting($exampleCollection, 'name', 'ASC');
-
-print_r($result);
-
-$result = $arraySorter->sorting($exampleCollection, 'city', 'DESC');
+$result = $arraySorter->sorting($exampleCollection, $sortedPropertiesDirections);
 
 print_r($result);
