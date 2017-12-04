@@ -16,7 +16,6 @@ script:
 - ./vendor/bin/phpcpd ./src
 - ./vendor/bin/phpunit ./tests/ --coverage-clover build/logs/clover.xml
 - ./vendor/bin/phpmd ./src text ./phpmd.xml
-- ./vendor/bin/security-checker security:check ./composer.lock
 
 after_success:
 - ./vendor/bin/test-reporter
