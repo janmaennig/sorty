@@ -16,7 +16,7 @@ class ArrayAccessValueSorter extends AbstractSorter
     public function sorting($recordCollection, $sortingPropertiesDirection)
     {
         if (!$recordCollection instanceof \ArrayAccess || !$recordCollection instanceof \Iterator) {
-            throw new \RuntimeException('Record collection must be implement \ArrayAccess and \Iterator interface!');
+            throw new \InvalidArgumentException('Record collection must be implement \ArrayAccess and \Iterator interface!');
         }
 
         $unsortedList = iterator_to_array($recordCollection);

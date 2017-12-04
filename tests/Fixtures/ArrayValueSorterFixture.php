@@ -1,9 +1,9 @@
 <?php
 
-namespace JanMaennig\Sorty\Tests;
+namespace JanMaennig\Sorty\Tests\Fixtures;
 
 /**
- * @package JanMaennig\Sorty\Tests
+ * @package JanMaennig\Sorty\Tests\Fixtures
  */
 class ArrayValueSorterFixture
 {

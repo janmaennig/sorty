@@ -3,6 +3,7 @@
 namespace JanMaennig\Sorty\Tests;
 
 use JanMaennig\Sorty\ArrayValueSorter;
+use JanMaennig\Sorty\Tests\Fixtures\ArrayValueSorterFixture;
 
 /**
  * @package JanMaennig\Sorty\Tests
