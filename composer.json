@@ -39,7 +39,7 @@
     "sebastian/phpcpd": "3.0.1",
     "theseer/phpdox": "0.10.1",
     "phpmetrics/phpmetrics": "2.3.2",
-    "sensiolabs/security-checker": "4.1.6",
+    "sensiolabs/security-checker": "dev-master",
     "codeclimate/php-test-reporter": "0.4.4"
   },
   "require": {
