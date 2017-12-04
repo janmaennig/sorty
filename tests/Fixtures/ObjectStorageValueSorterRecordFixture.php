@@ -5,7 +5,7 @@ namespace JanMaennig\Sorty\Tests\Fixtures;
 /**
  * @package JanMaennig\Sorty\Tests\Fixtures
  */
-class ArrayAccessSorterRecordFixture
+class ObjectStorageValueSorterRecordFixture
 {
     /**
      * @var string

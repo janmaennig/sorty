@@ -10,17 +10,25 @@ use JanMaennig\Sorty\Tests\Fixtures\ArrayValueSorterFixture;
  */
 class ArrayValueSorterTest extends \PHPUnit_Framework_TestCase
 {
-    /** @var  ArrayValueSorter */
+    /**
+     * @var  ArrayValueSorter
+     */
     private $arraySorter;
+
+    /**
+     * @var array
+     */
+    private $exampleCollection = [];
+
+    /**
+     * @var array
+     */
+    private $sortedPropertiesDirections = [];
 
     public function setUp()
     {
         $this->arraySorter = new ArrayValueSorter();
-    }
-
-    public function testArraySortingWithValidParameters()
-    {
-        $collection = [
+        $this->exampleCollection = [
             [
                 'anyTypeSort' => '3',
                 'matchQuality' => '500',
@@ -53,92 +61,45 @@ class ArrayValueSorterTest extends \PHPUnit_Framework_TestCase
             ]
         ];
 
-        $sortedPropertiesDirections = [
+        $this->sortedPropertiesDirections = [
             'anyTypeSort' => SORT_ASC,
             'matchQuality' => SORT_DESC,
             'objectName' => SORT_ASC
         ];
+    }
 
-        $result = $this->arraySorter->sorting($collection, $sortedPropertiesDirections);
+    public function testSortingWithValidParameters()
+    {
+        $result = $this->arraySorter->sorting($this->exampleCollection, $this->sortedPropertiesDirections);
 
         $this->assertEquals(ArrayValueSorterFixture::$expectedCollection, $result);
     }
 
-    public function testArraySortingWithInvalidSortingDirectionParameters()
+    public function testSortingWithInvalidSortingDirectionParameters()
     {
         $this->expectException(\InvalidArgumentException::class);
         $this->expectExceptionMessage('Sorting direction "foo" is an invalid sorting flag!');
 
-        $collection = [
-            [
-                'anyTypeSort' => '3',
-                'matchQuality' => '500',
-                'objectName' => 'FooA'
-            ],
-            [
-                'anyTypeSort' => '4',
-                'matchQuality' => '600',
-                'objectName' => 'FooB'
-            ],
-            [
-                'anyTypeSort' => '2',
-                'matchQuality' => '700',
-                'objectName' => 'FooC'
-            ],
-            [
-                'anyTypeSort' => '3',
-                'matchQuality' => '800',
-                'objectName' => 'FooE'
-            ],
-            [
-                'anyTypeSort' => '1',
-                'matchQuality' => '900',
-                'objectName' => 'FooF'
-            ],
-            [
-                'anyTypeSort' => '3',
-                'matchQuality' => '800',
-                'objectName' => 'FooG'
-            ]
-        ];
-
-        $sortedPropertiesDirections = [
+        $invalidSortedPropertiesDirections = [
             'anyTypeSort' => 'foo',
             'matchQuality' => SORT_DESC,
             'objectName' => SORT_ASC
         ];
 
-        $this->arraySorter->sorting($collection, $sortedPropertiesDirections);
+        $this->arraySorter->sorting($this->exampleCollection, $invalidSortedPropertiesDirections);
     }
 
-    public function testArraySortingWithInvalidSortingPropertyParameters()
+    public function testSortingWithInvalidSortingPropertyParameters()
     {
         $this->expectException(\InvalidArgumentException::class);
-        $this->expectExceptionMessage('Property "objectName" in collection record not exists!');
+        $this->expectExceptionMessage('Property "objectId" in collection record not exists!');
 
-        $collection = [
-            [
-                'anyTypeSort' => '3',
-                'matchQuality' => '800',
-                'objectName' => 'FooE'
-            ],
-            [
-                'anyTypeSort' => '2',
-                'matchQuality' => '700',
-            ],
-            [
-                'anyTypeSort' => '3',
-                'matchQuality' => '800',
-                'objectName' => 'FooE'
-            ]
-        ];
-
-        $sortedPropertiesDirections = [
+        $invalidSortedPropertiesDirections = [
             'anyTypeSort' => SORT_ASC,
             'matchQuality' => SORT_DESC,
-            'objectName' => SORT_ASC
+            'objectId' => SORT_ASC
         ];
 
-        $this->arraySorter->sorting($collection, $sortedPropertiesDirections);
+        $this->arraySorter->sorting($this->exampleCollection, $invalidSortedPropertiesDirections);
     }
 }

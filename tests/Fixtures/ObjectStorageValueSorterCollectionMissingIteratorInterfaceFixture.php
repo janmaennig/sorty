@@ -5,7 +5,7 @@ namespace JanMaennig\Sorty\Tests\Fixtures;
 /**
  * @package JanMaennig\Sorty\Tests\Fixtures
  */
-class ArrayAccessSorterCollectionMissingIteratorInterfaceFixture implements \ArrayAccess
+class ObjectStorageValueSorterCollectionMissingIteratorInterfaceFixture implements \ArrayAccess
 {
     /**
      * @var array

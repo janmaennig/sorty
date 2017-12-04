@@ -5,7 +5,7 @@ namespace JanMaennig\Sorty;
 /**
  * @package JanMaennig\Sorty
  */
-class ArrayAccessValueSorter extends AbstractSorter
+class ObjectStorageValueSorter extends AbstractSorter
 {
     /**
      * @param \ArrayAccess|\Iterator $recordCollection must be implement \ArrayAccess and \Iterator interface
