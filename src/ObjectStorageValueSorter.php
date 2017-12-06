@@ -31,6 +31,11 @@ class ObjectStorageValueSorter extends AbstractSorter
         $resultObject = new $className();
 
         foreach ($sortedList as $offset => $value) {
+            if (@$recordCollection->offsetExists($value)) {
+                $resultObject->offsetSet($value, $offset);
+                continue;
+            }
+
             $resultObject->offsetSet($offset, $value);
         }
 

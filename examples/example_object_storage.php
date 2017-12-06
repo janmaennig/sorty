@@ -29,8 +29,8 @@ $sortedPropertiesDirections = [
     'city' => SORT_DESC
 ];
 
-$arraySorter = new \JanMaennig\Sorty\ObjectStorageValueSorter();
+$objectStorageSorter = new \JanMaennig\Sorty\ObjectStorageValueSorter();
 
-$result = $arraySorter->sorting($exampleCollection, $sortedPropertiesDirections);
+$result = $objectStorageSorter->sorting($exampleCollection, $sortedPropertiesDirections);
 
 print_r($result);
